@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WorkGrid from "../components/WorkGrid.astro";
 import { NAME, BIRTH, BIO, SITE_DESCRIPTION } from "../consts";
 
 const pageURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -66,6 +67,9 @@ const structuredData = {
 <BaseLayout>
 	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	<main>
+		<section class="work">
+			<WorkGrid />
+		</section>
 		<div class="bio">
 			<hr />
 			<div class="intro">
@@ -81,8 +85,15 @@ const structuredData = {
 <style>
 	main {
 		display: flex;
-		justify-content: center;
-		padding: 6rem 1.5rem;
+		flex-direction: column;
+		align-items: center;
+		gap: 5rem;
+		padding: 4rem 1.5rem 6rem;
+	}
+
+	.work {
+		width: 100%;
+		max-width: 75rem;
 	}
 
 	.bio {

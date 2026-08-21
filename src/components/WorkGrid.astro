@@ -1,0 +1,87 @@
+---
+import Photo from "./Photo.astro";
+import landscape from "../images/work/dummy-landscape.jpg";
+import landscapeWide from "../images/work/dummy-landscape-wide.jpg";
+import portrait from "../images/work/dummy-portrait.jpg";
+import portraitTall from "../images/work/dummy-portrait-tall.jpg";
+
+const items = [
+	{ src: landscape, span: "big", width: 900 },
+	{ src: portrait, span: "tall", width: 600 },
+	{ src: portraitTall, span: "tallest", width: 600 },
+	{ src: landscapeWide, span: "wide", width: 900 },
+	{ src: landscape, span: "small", width: 600 },
+	{ src: portrait, span: "tall", width: 600 },
+	{ src: landscapeWide, span: "wide", width: 900 },
+	{ src: portraitTall, span: "tallest", width: 600 },
+	{ src: landscape, span: "big", width: 900 },
+];
+---
+
+<div class="work-grid">
+	{
+		items.map((item) => (
+			<div class:list={["item", item.span]}>
+				<Photo src={item.src} alt="" width={item.width} />
+			</div>
+		))
+	}
+</div>
+
+<style>
+	.work-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-auto-rows: 140px;
+		gap: 1.25rem;
+	}
+
+	.item {
+		overflow: hidden;
+	}
+
+	.item :global(img) {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.big {
+		grid-column: span 2;
+		grid-row: span 2;
+	}
+
+	.wide {
+		grid-column: span 2;
+		grid-row: span 1;
+	}
+
+	.tall {
+		grid-column: span 1;
+		grid-row: span 2;
+	}
+
+	.tallest {
+		grid-column: span 1;
+		grid-row: span 3;
+	}
+
+	.small {
+		grid-column: span 1;
+		grid-row: span 1;
+	}
+
+	@media (max-width: 700px) {
+		.work-grid {
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: 160px;
+			gap: 0.75rem;
+		}
+
+		.big,
+		.wide {
+			grid-column: span 2;
+		}
+	}
+</style>
