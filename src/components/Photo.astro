@@ -1,0 +1,9 @@
+---
+import { Image, type LocalImageProps, type RemoteImageProps } from "astro:assets";
+
+type Props = LocalImageProps<never> | RemoteImageProps<never>;
+
+const { quality = 85, ...rest } = Astro.props;
+---
+
+<Image quality={quality} {...rest} />
