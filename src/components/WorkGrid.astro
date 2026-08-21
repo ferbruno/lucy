@@ -6,22 +6,22 @@ import portrait from "../images/work/dummy-portrait.jpg";
 import portraitTall from "../images/work/dummy-portrait-tall.jpg";
 
 const items = [
-	{ src: landscape, width: 700 },
-	{ src: portrait, width: 500 },
-	{ src: landscapeWide, width: 700 },
-	{ src: portraitTall, width: 500 },
-	{ src: landscape, width: 700 },
-	{ src: portrait, width: 500 },
-	{ src: landscapeWide, width: 700 },
-	{ src: portraitTall, width: 500 },
-	{ src: landscape, width: 700 },
+	{ src: landscape, width: 700, orientation: "landscape" },
+	{ src: portrait, width: 500, orientation: "portrait" },
+	{ src: landscapeWide, width: 700, orientation: "landscape" },
+	{ src: portraitTall, width: 500, orientation: "portrait" },
+	{ src: landscape, width: 700, orientation: "landscape" },
+	{ src: portrait, width: 500, orientation: "portrait" },
+	{ src: landscapeWide, width: 700, orientation: "landscape" },
+	{ src: portraitTall, width: 500, orientation: "portrait" },
+	{ src: landscape, width: 700, orientation: "landscape" },
 ];
 ---
 
 <div class="work-grid">
 	{
-		items.map((item) => (
-			<div class="item">
+		items.map((item, i) => (
+			<div class:list={["item", item.orientation, i % 2 === 0 ? "align-start" : "align-end"]}>
 				<Photo src={item.src} alt="" width={item.width} />
 			</div>
 		))
@@ -30,7 +30,7 @@ const items = [
 
 <style>
 	.work-grid {
-		column-count: 3;
+		column-count: 2;
 		column-gap: 3rem;
 	}
 
@@ -49,15 +49,23 @@ const items = [
 
 	.item :global(img) {
 		display: block;
-		width: 100%;
 		height: auto;
 	}
 
-	@media (max-width: 900px) {
-		.work-grid {
-			column-count: 2;
-			column-gap: 2rem;
-		}
+	.landscape :global(img) {
+		width: 100%;
+	}
+
+	.portrait :global(img) {
+		width: 68%;
+	}
+
+	.portrait.align-start :global(img) {
+		margin-right: auto;
+	}
+
+	.portrait.align-end :global(img) {
+		margin-left: auto;
 	}
 
 	@media (max-width: 560px) {
@@ -69,6 +77,10 @@ const items = [
 		.item:nth-child(3n + 2),
 		.item:nth-child(3n) {
 			margin-bottom: 2.5rem;
+		}
+
+		.portrait :global(img) {
+			width: 55%;
 		}
 	}
 </style>
