@@ -6,22 +6,22 @@ import portrait from "../images/work/dummy-portrait.jpg";
 import portraitTall from "../images/work/dummy-portrait-tall.jpg";
 
 const items = [
-	{ src: landscape, span: "big", width: 900 },
-	{ src: portrait, span: "tall", width: 600 },
-	{ src: portraitTall, span: "tallest", width: 600 },
-	{ src: landscapeWide, span: "wide", width: 900 },
-	{ src: landscape, span: "small", width: 600 },
-	{ src: portrait, span: "tall", width: 600 },
-	{ src: landscapeWide, span: "wide", width: 900 },
-	{ src: portraitTall, span: "tallest", width: 600 },
-	{ src: landscape, span: "big", width: 900 },
+	{ src: landscape, width: 700 },
+	{ src: portrait, width: 500 },
+	{ src: landscapeWide, width: 700 },
+	{ src: portraitTall, width: 500 },
+	{ src: landscape, width: 700 },
+	{ src: portrait, width: 500 },
+	{ src: landscapeWide, width: 700 },
+	{ src: portraitTall, width: 500 },
+	{ src: landscape, width: 700 },
 ];
 ---
 
 <div class="work-grid">
 	{
 		items.map((item) => (
-			<div class:list={["item", item.span]}>
+			<div class="item">
 				<Photo src={item.src} alt="" width={item.width} />
 			</div>
 		))
@@ -30,58 +30,45 @@ const items = [
 
 <style>
 	.work-grid {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		grid-auto-rows: 140px;
-		gap: 1.25rem;
+		column-count: 3;
+		column-gap: 3rem;
 	}
 
 	.item {
-		overflow: hidden;
+		break-inside: avoid;
+		margin-bottom: 3.5rem;
+	}
+
+	.item:nth-child(3n + 2) {
+		margin-bottom: 5.5rem;
+	}
+
+	.item:nth-child(3n) {
+		margin-bottom: 2rem;
 	}
 
 	.item :global(img) {
 		display: block;
 		width: 100%;
-		height: 100%;
-		object-fit: cover;
+		height: auto;
 	}
 
-	.big {
-		grid-column: span 2;
-		grid-row: span 2;
-	}
-
-	.wide {
-		grid-column: span 2;
-		grid-row: span 1;
-	}
-
-	.tall {
-		grid-column: span 1;
-		grid-row: span 2;
-	}
-
-	.tallest {
-		grid-column: span 1;
-		grid-row: span 3;
-	}
-
-	.small {
-		grid-column: span 1;
-		grid-row: span 1;
-	}
-
-	@media (max-width: 700px) {
+	@media (max-width: 900px) {
 		.work-grid {
-			grid-template-columns: repeat(2, 1fr);
-			grid-auto-rows: 160px;
-			gap: 0.75rem;
+			column-count: 2;
+			column-gap: 2rem;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.work-grid {
+			column-count: 1;
 		}
 
-		.big,
-		.wide {
-			grid-column: span 2;
+		.item,
+		.item:nth-child(3n + 2),
+		.item:nth-child(3n) {
+			margin-bottom: 2.5rem;
 		}
 	}
 </style>
