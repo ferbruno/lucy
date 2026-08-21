@@ -1,7 +1,46 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { BIO } from "../consts";
 ---
 
 <BaseLayout>
-	<h1>Lucila Heinberg</h1>
+	<main>
+		<div class="bio">
+			<hr />
+			<p>{BIO}</p>
+			<hr />
+		</div>
+	</main>
 </BaseLayout>
+
+<style>
+	main {
+		display: flex;
+		justify-content: center;
+		padding: 6rem 1.5rem;
+	}
+
+	.bio {
+		max-width: 42rem;
+	}
+
+	hr {
+		width: 4rem;
+		border: none;
+		border-top: 3px solid #111;
+		margin: 0 0 2.5rem;
+	}
+
+	.bio hr:last-child {
+		margin: 2.5rem 0 0;
+	}
+
+	p {
+		margin: 0;
+		font-family: Georgia, "Times New Roman", serif;
+		font-weight: 700;
+		font-size: 1.5rem;
+		line-height: 1.5;
+		color: #111;
+	}
+</style>
