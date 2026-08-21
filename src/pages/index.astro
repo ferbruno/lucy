@@ -1,12 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { BIO } from "../consts";
+import { NAME, BIRTH, BIO } from "../consts";
 ---
 
 <BaseLayout>
 	<main>
 		<div class="bio">
 			<hr />
+			<div class="intro">
+				<h1>{NAME}</h1>
+				<p class="birth">{BIRTH}</p>
+			</div>
 			<p>{BIO}</p>
 			<hr />
 		</div>
@@ -35,6 +39,11 @@ import { BIO } from "../consts";
 		margin: 2.5rem 0 0;
 	}
 
+	.intro {
+		margin-bottom: 1.5rem;
+	}
+
+	h1,
 	p {
 		margin: 0;
 		font-family: Georgia, "Times New Roman", serif;
@@ -42,5 +51,9 @@ import { BIO } from "../consts";
 		font-size: 1.5rem;
 		line-height: 1.5;
 		color: #111;
+	}
+
+	.birth {
+		margin-top: 0.25rem;
 	}
 </style>
