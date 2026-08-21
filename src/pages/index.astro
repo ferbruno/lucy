@@ -1,9 +1,66 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { NAME, BIRTH, BIO } from "../consts";
+import { NAME, BIRTH, BIO, SITE_DESCRIPTION } from "../consts";
+
+const pageURL = new URL(Astro.url.pathname, Astro.site).toString();
+const imageURL = new URL("/og-default.jpg", Astro.site).toString();
+const personId = `${pageURL}#lucila-heinberg`;
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "ProfilePage",
+			"@id": `${pageURL}#profile`,
+			url: pageURL,
+			name: NAME,
+			mainEntity: { "@id": personId },
+		},
+		{
+			"@type": "Person",
+			"@id": personId,
+			name: NAME,
+			description: SITE_DESCRIPTION,
+			image: imageURL,
+			url: pageURL,
+			jobTitle: "Fotógrafa",
+			birthDate: "1979",
+			birthPlace: {
+				"@type": "Place",
+				name: "Buenos Aires, Argentina",
+			},
+			nationality: {
+				"@type": "Country",
+				name: "Argentina",
+			},
+			alumniOf: {
+				"@type": "EducationalOrganization",
+				name: "SICA",
+			},
+			award: [
+				"Premio Felifa (La Luminosa), 2012",
+				"Mención del Salón Nacional de las Artes Visuales, 2012",
+			],
+			knowsAbout: ["Fotografía analógica", "Revelado color manual"],
+		},
+		{
+			"@type": "Book",
+			name: "Ahora",
+			datePublished: "2012",
+			author: { "@id": personId },
+		},
+		{
+			"@type": "Book",
+			name: "Bardo",
+			datePublished: "2021-08",
+			author: { "@id": personId },
+		},
+	],
+};
 ---
 
 <BaseLayout>
+	<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	<main>
 		<div class="bio">
 			<hr />
