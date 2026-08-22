@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Photo from "../components/Photo.astro";
-import { NAME, BIRTH, BIO, BOOKS, SITE_DESCRIPTION } from "../consts";
+import { NAME, BIRTH, BIO, BOOKS, PRESS_MENTIONS, SITE_DESCRIPTION } from "../consts";
 import lucilaPortrait from "../images/lucila.jpg";
 
 const pageURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -48,6 +48,13 @@ const structuredData = {
 				"https://www.instagram.com/lucila_victoria_/",
 				"https://www.facebook.com/LucilaHeinbergPhoto/",
 			],
+			subjectOf: PRESS_MENTIONS.map((mention) => ({
+				"@type": "NewsArticle",
+				headline: mention.headline,
+				url: mention.url,
+				datePublished: mention.datePublished,
+				publisher: { "@type": "Organization", name: mention.outlet },
+			})),
 		},
 		...BOOKS.map((book) => ({
 			"@type": "Book",

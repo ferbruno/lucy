@@ -37,3 +37,12 @@ export const BOOKS = [
 		],
 	},
 ];
+
+export const PRESS_MENTIONS = [
+	{
+		headline: "Bardo: el trabajo fotográfico de Lucila Heinberg alrededor del mundo",
+		outlet: "La Nación",
+		datePublished: "2021-12-25",
+		url: "https://www.lanacion.com.ar/revista-brando/bardo-el-trabajo-fotografico-de-lucila-heinberg-alrededor-del-mundo-nid25122021/",
+	},
+];
