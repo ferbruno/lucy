@@ -29,6 +29,11 @@ export const BOOKS = [
 				city: "NY",
 				url: "https://www.printedmatter.org/catalog/59142/",
 			},
+			{
+				name: "Lovely House",
+				city: "SP",
+				url: "https://lovelyhouse.com.br/publicacao/bardo-lucila-heinberg/",
+			},
 		],
 	},
 ];
