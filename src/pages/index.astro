@@ -60,6 +60,18 @@ const structuredData = {
 			name: "Bardo",
 			datePublished: "2021-08",
 			author: { "@id": personId },
+			offers: [
+				{
+					"@type": "Offer",
+					url: "https://tienda.malba.org.ar/products/libro-bardo-lucila-heinberg",
+					seller: { "@type": "Organization", name: "Tienda MALBA" },
+				},
+				{
+					"@type": "Offer",
+					url: "https://www.printedmatter.org/catalog/59142/",
+					seller: { "@type": "Organization", name: "Printed Matter" },
+				},
+			],
 		},
 	],
 };
@@ -79,6 +91,11 @@ const structuredData = {
 			<p set:html={BIO} />
 		</div>
 	</main>
+	<footer>
+		<a href="https://www.instagram.com/lucila_victoria_/" target="_blank" rel="noopener noreferrer">
+			Instagram
+		</a>
+	</footer>
 </BaseLayout>
 
 <style>
@@ -124,5 +141,25 @@ const structuredData = {
 
 	.birth {
 		font-weight: 400;
+	}
+
+	.bio :global(a) {
+		color: inherit;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 2px;
+	}
+
+	footer {
+		display: flex;
+		justify-content: center;
+		padding: 0 1.5rem 4rem;
+	}
+
+	footer a {
+		font-family: Georgia, "Times New Roman", serif;
+		font-size: 0.95rem;
+		color: #111;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 2px;
 	}
 </style>
