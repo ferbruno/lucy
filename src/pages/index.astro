@@ -72,13 +72,11 @@ const structuredData = {
 			<Photo src={lucilaPortrait} alt="Lucila Heinberg" width={1000} />
 		</div>
 		<div class="bio">
-			<hr />
 			<div class="intro">
 				<h1>{NAME}</h1>
 				<p class="birth">{BIRTH}</p>
 			</div>
 			<p>{BIO}</p>
-			<hr />
 		</div>
 	</main>
 </BaseLayout>
@@ -105,17 +103,6 @@ const structuredData = {
 
 	.bio {
 		max-width: 42rem;
-	}
-
-	hr {
-		width: 4rem;
-		border: none;
-		border-top: 3px solid #111;
-		margin: 0 0 2.5rem;
-	}
-
-	.bio hr:last-child {
-		margin: 2.5rem 0 0;
 	}
 
 	.intro {
