@@ -89,7 +89,8 @@ const structuredData = {
 									{i > 0 && " · "}
 									<a href={retailer.url} target="_blank" rel="noopener noreferrer">
 										{retailer.name}
-									</a>
+									</a>{" "}
+									({retailer.city})
 								</>
 							))}
 						</li>
@@ -136,6 +137,7 @@ const structuredData = {
 	}
 
 	h1,
+	h2,
 	p {
 		margin: 0;
 		font-family: Georgia, "Times New Roman", serif;
@@ -165,7 +167,7 @@ const structuredData = {
 	}
 
 	.books h2 {
-		font-weight: 700;
+		font-weight: 400;
 		margin-bottom: 1rem;
 	}
 

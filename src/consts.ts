@@ -11,7 +11,9 @@ export const BOOKS = [
 	{
 		title: "Ahora",
 		datePublished: "2012",
-		retailers: [{ name: "La Luminosa", url: "https://laluminosaeditorial.com/ahora" }],
+		retailers: [
+			{ name: "La Luminosa", city: "BUE", url: "https://laluminosaeditorial.com/ahora" },
+		],
 	},
 	{
 		title: "Bardo",
@@ -19,9 +21,14 @@ export const BOOKS = [
 		retailers: [
 			{
 				name: "Tienda MALBA",
+				city: "BUE",
 				url: "https://tienda.malba.org.ar/products/libro-bardo-lucila-heinberg",
 			},
-			{ name: "Printed Matter", url: "https://www.printedmatter.org/catalog/59142/" },
+			{
+				name: "Printed Matter",
+				city: "NY",
+				url: "https://www.printedmatter.org/catalog/59142/",
+			},
 		],
 	},
 ];
