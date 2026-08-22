@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Photo from "../components/Photo.astro";
-import { NAME, BIRTH, BIO, SITE_DESCRIPTION } from "../consts";
+import { NAME, BIRTH, BIO, BOOKS, SITE_DESCRIPTION } from "../consts";
 import lucilaPortrait from "../images/lucila.jpg";
 
 const pageURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -49,30 +49,17 @@ const structuredData = {
 				"https://www.facebook.com/LucilaHeinbergPhoto/",
 			],
 		},
-		{
+		...BOOKS.map((book) => ({
 			"@type": "Book",
-			name: "Ahora",
-			datePublished: "2012",
+			name: book.title,
+			datePublished: book.datePublished,
 			author: { "@id": personId },
-		},
-		{
-			"@type": "Book",
-			name: "Bardo",
-			datePublished: "2021-08",
-			author: { "@id": personId },
-			offers: [
-				{
-					"@type": "Offer",
-					url: "https://tienda.malba.org.ar/products/libro-bardo-lucila-heinberg",
-					seller: { "@type": "Organization", name: "Tienda MALBA" },
-				},
-				{
-					"@type": "Offer",
-					url: "https://www.printedmatter.org/catalog/59142/",
-					seller: { "@type": "Organization", name: "Printed Matter" },
-				},
-			],
-		},
+			offers: book.retailers.map((retailer) => ({
+				"@type": "Offer",
+				url: retailer.url,
+				seller: { "@type": "Organization", name: retailer.name },
+			})),
+		})),
 	],
 };
 ---
@@ -90,11 +77,33 @@ const structuredData = {
 			</div>
 			<p set:html={BIO} />
 		</div>
+		<section class="books">
+			<h2>Comprar libros</h2>
+			<ul>
+				{
+					BOOKS.map((book) => (
+						<li>
+							<em>{book.title}</em> —{" "}
+							{book.retailers.map((retailer, i) => (
+								<>
+									{i > 0 && " · "}
+									<a href={retailer.url} target="_blank" rel="noopener noreferrer">
+										{retailer.name}
+									</a>
+								</>
+							))}
+						</li>
+					))
+				}
+			</ul>
+		</section>
 	</main>
 	<footer>
-		<a href="https://www.instagram.com/lucila_victoria_/" target="_blank" rel="noopener noreferrer">
-			Instagram
-		</a>
+		<div class="footer-inner">
+			<a href="https://www.instagram.com/lucila_victoria_/" target="_blank" rel="noopener noreferrer">
+				Instagram
+			</a>
+		</div>
 	</footer>
 </BaseLayout>
 
@@ -143,16 +152,49 @@ const structuredData = {
 		font-weight: 400;
 	}
 
-	.bio :global(a) {
+	.bio :global(a),
+	.books a {
 		color: inherit;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 2px;
+	}
+
+	.books {
+		max-width: 42rem;
+	}
+
+	.books h2 {
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+
+	.books ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.books li {
+		font-family: Georgia, "Times New Roman", serif;
+		font-size: 1.2rem;
+		line-height: 1.4;
+		color: #111;
+	}
+
+	.books li + li {
+		margin-top: 0.5rem;
 	}
 
 	footer {
 		display: flex;
 		justify-content: center;
 		padding: 0 1.5rem 4rem;
+	}
+
+	footer .footer-inner {
+		width: 100%;
+		max-width: 42rem;
+		text-align: left;
 	}
 
 	footer a {
