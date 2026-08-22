@@ -76,7 +76,7 @@ const structuredData = {
 				<h1>{NAME}</h1>
 				<p class="birth">{BIRTH}</p>
 			</div>
-			<p>{BIO}</p>
+			<p set:html={BIO} />
 		</div>
 	</main>
 </BaseLayout>
