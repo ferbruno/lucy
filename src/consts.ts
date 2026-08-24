@@ -1,6 +1,6 @@
 export const SITE_TITLE = "Lucila Heinberg — Fotografía";
 export const SITE_DESCRIPTION =
-	"Fotógrafa (Buenos Aires, 1979). Estudió Dirección de Fotografía (SICA). Premio Felifa 2012 y Mención del Salón Nacional de Artes Visuales. Autora de Ahora y Bardo.";
+	"Fotógrafa argentina contemporánea basada en Tigre, Buenos Aires. Revelado color manual. Autora de Ahora y Bardo.";
 
 export const NAME = "Lucila Heinberg";
 export const BIRTH = "Buenos Aires, 1979";
