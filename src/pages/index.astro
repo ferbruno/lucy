@@ -25,7 +25,7 @@ const structuredData = {
 			description: SITE_DESCRIPTION,
 			image: imageURL,
 			url: pageURL,
-			jobTitle: "Fotógrafa",
+			jobTitle: ["Fotógrafa", "Docente", "Editora"],
 			birthDate: "1979",
 			birthPlace: {
 				"@type": "Place",
@@ -35,15 +35,25 @@ const structuredData = {
 				"@type": "Country",
 				name: "Argentina",
 			},
-			alumniOf: {
-				"@type": "EducationalOrganization",
-				name: "SICA",
-			},
+			alumniOf: [
+				{ "@type": "EducationalOrganization", name: "SICA" },
+				{
+					"@type": "EducationalOrganization",
+					name: "Universidad Nacional de San Martín (UNSAM)",
+				},
+			],
 			award: [
 				"Premio Felifa (La Luminosa), 2012",
 				"Mención del Salón Nacional de las Artes Visuales, 2012",
 			],
-			knowsAbout: ["Fotografía analógica", "Revelado color manual"],
+			knowsAbout: [
+				"Fotografía analógica",
+				"Revelado color manual",
+				"Experimentación con el color",
+				"Retrato",
+				"Paisaje",
+				"Edición de publicaciones fotográficas",
+			],
 			sameAs: [
 				"https://www.instagram.com/lucila_victoria_/",
 				"https://www.facebook.com/LucilaHeinbergPhoto/",
@@ -82,7 +92,7 @@ const structuredData = {
 				<h1>{NAME}</h1>
 				<p class="birth">{BIRTH}</p>
 			</div>
-			<p set:html={BIO} />
+			{BIO.map((paragraph) => <p set:html={paragraph} />)}
 		</div>
 		<section class="books">
 			<h2>Comprar libros</h2>
@@ -172,6 +182,10 @@ const structuredData = {
 
 	.birth {
 		font-weight: 400;
+	}
+
+	.bio p + p {
+		margin-top: 1.4em;
 	}
 
 	.bio :global(a),
